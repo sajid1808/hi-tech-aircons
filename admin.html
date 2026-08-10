@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HI-TECH AIRCONS | Control Center (Database View)</title>
+    
+    <!-- Fonts & Icons CDN -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #0F172A;
+            --primary-light: #1E293B;
+            --accent: #E63946;
+            --accent-hover: #D62230;
+            --gold: #C5A880; /* Premium gold accent */
+            --bg-dark: #080D1A;
+            --glass-bg: rgba(30, 41, 59, 0.45);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-light: #F8FAFC;
+            --text-muted: #94A3B8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Admin Branding */
+        .admin-header {
+            padding: 1.5rem 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-block {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-block i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
+
+        .brand-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-name span {
+            color: var(--gold);
+        }
+
+        .badge-admin {
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        /* Container & Cards Dashboard */
+        .admin-content {
+            flex-grow: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+            display: none; /* Shown after auth success */
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            border-radius: 1.25rem;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .stat-info h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-info p {
+            font-size: 2.25rem;
+            font-weight: 800;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-light);
+            line-height: 1;
+        }
+
+        .stat-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .stat-card:nth-child(1) .stat-icon { background: rgba(197, 168, 128, 0.15); color: var(--gold); }
+        .stat-card:nth-child(2) .stat-icon { background: rgba(230, 57, 70, 0.15); color: var(--accent); }
+        .stat-card:nth-child(3) .stat-icon { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+
+        /* Search Filter Controls */
+        .controls-panel {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.25rem;
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .search-box-wrapper {
+            position: relative;
+            flex-grow: 1;
+            max-width: 450px;
+        }
+
+        .search-box-wrapper i {
+            position: absolute;
+            left: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.85rem 1rem 0.85rem 3rem;
+            border-radius: 30px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--glass-border);
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--gold);
+        }
+
+        .btn-refresh {
+            background-color: var(--primary-light);
+            border: 1px solid var(--glass-border);
+            color: var(--text-light);
+            padding: 0.85rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+        }
+
+        .btn-refresh:hover {
+            background-color: var(--gold);
+            color: var(--primary);
+            border-color: var(--gold);
+        }
+
+        /* Database Records Table UI */
+        .table-container {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+        }
+
+        .bookings-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .bookings-table th {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 1.25rem 1.5rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .bookings-table td {
+            padding: 1.25rem 1.5rem;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .bookings-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .bookings-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .badge-service {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .badge-sales { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+        .badge-install { background: rgba(74, 222, 128, 0.15); color: #4ade80; }
+        .badge-repair { background: rgba(248, 113, 113, 0.15); color: #f87171; }
+        .badge-maint { background: rgba(251, 146, 60, 0.15); color: #fb923c; }
+        .badge-gas { background: rgba(167, 139, 250, 0.15); color: #a78bfa; }
+        .badge-amc { background: rgba(232, 121, 249, 0.15); color: #e879f9; }
+
+        .btn-delete {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: 0.2s;
+        }
+
+        .btn-delete:hover {
+            color: var(--accent);
+            background: rgba(230, 57, 70, 0.1);
+        }
+
+        .no-data {
+            padding: 3rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Credentials Authentication Modal (Absolute UI center) */
+        .auth-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            padding: 3rem 2.5rem;
+            border-radius: 1.5rem;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+
+        .auth-card i {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-card h2 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .auth-input {
+            padding: 0.85rem 1.25rem;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background: rgba(15, 23, 42, 0.8);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            text-align: center;
+            letter-spacing: 2px;
+            transition: 0.2s;
+        }
+
+        .auth-input:focus {
+            border-color: var(--gold);
+        }
+
+        .btn-auth-submit {
+            background: var(--gold);
+            color: var(--primary);
+            border: none;
+            padding: 0.85rem 0;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+
+        .btn-auth-submit:hover {
+            background: white;
+        }
+
+        .error-message {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        /* Footer Copyright */
+        .admin-footer {
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
+        }
+
+        /* TABS NAVIGATION */
+        .tabs-navigation {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1.25rem;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 0.85rem 1.75rem;
+            font-size: 0.95rem;
+            font-weight: 700;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid transparent;
+        }
+
+        .tab-btn.active {
+            background: rgba(197, 168, 128, 0.12);
+            color: var(--gold);
+            border-color: var(--gold);
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: white;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* CONFIGURATION FORM ELEMENTS */
+        .form-group-admin {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group-admin label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.75px;
+        }
+
+        .admin-input-field, .admin-textarea-field {
+            width: 100%;
+            padding: 0.85rem 1.25rem;
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid var(--glass-border);
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition-fast);
+        }
+
+        .admin-input-field:focus, .admin-textarea-field:focus {
+            border-color: var(--gold);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .responsive-two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .responsive-two-col.gap-1 { gap: 1rem; }
+        .responsive-two-col.gap-2 { gap: 2rem; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .dashboard-grid { grid-template-columns: 1fr; }
+            .controls-panel { flex-direction: column; align-items: stretch; }
+            .table-container { overflow-x: auto; }
+            .bookings-table { min-width: 600px; }
+            .responsive-two-col { grid-template-columns: 1fr; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- AUTHENTICATION DIALOG OVERLAY -->
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-card">
+            <i class="fa-solid fa-user-shield"></i>
+            <h2>Control Access Required</h2>
+            <p>Please enter the administrative password to read the SQLite database.</p>
+            
+            <form class="auth-form" id="authForm">
+                <input type="password" id="authPassword" class="auth-input" placeholder="••••••••" required autofocus>
+                <button type="submit" class="btn-auth-submit">Unlock Database</button>
+                <div class="error-message" id="authError">Incorrect password. Please try again.</div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MAIN CONTROL CENTER PANEL -->
+    <header class="admin-header">
+        <div class="logo-block">
+            <i class="fa-solid fa-cube"></i>
+            <span class="brand-name">HI-TECH <span>AIRCONS</span></span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <span class="badge-admin">Admin Dashboard</span>
+            <button class="btn-refresh" id="btnLogout" style="background: rgba(230,57,70,0.1); color: var(--accent); border-color: rgba(230,57,70,0.2);"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        </div>
+    </header>
+
+    <main class="admin-content" id="adminContent">
+        <!-- TABS FOR NAVIGATION -->
+        <div class="tabs-navigation">
+            <button class="tab-btn active" id="tabBookings"><i class="fa-solid fa-list-check"></i> Service Requests</button>
+            <button class="tab-btn" id="tabConfig"><i class="fa-solid fa-gears"></i> Edit Website Content</button>
+            <button class="tab-btn" id="tabMedia"><i class="fa-solid fa-images"></i> Manage Showroom Media</button>
+            <button class="tab-btn" id="tabProducts"><i class="fa-solid fa-boxes-packing"></i> Manage Brand Products</button>
+        </div>
+
+        <!-- PANEL 1: BOOKINGS LIST -->
+        <div id="bookingsPanel">
+            <!-- 1. STATS METRICS GRID -->
+            <section class="dashboard-grid">
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Total Requests</h3>
+                        <p id="statTotal">0</p>
+                    </div>
+                    <div class="stat-icon"><i class="fa-solid fa-inbox"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Sales Enquiries</h3>
+                        <p id="statSales">0</p>
+                    </div>
+                    <div class="stat-icon"><i class="fa-solid fa-tags"></i></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-info">
+                        <h3>Service & Repairs</h3>
+                        <p id="statServices">0</p>
+                    </div>
+                    <div class="stat-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                </div>
+            </section>
+
+            <!-- 2. SEARCH FILTERS BAR -->
+            <section class="controls-panel">
+                <div class="search-box-wrapper">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search by name, phone or service details...">
+                </div>
+                <button class="btn-refresh" id="btnRefresh"><i class="fa-solid fa-rotate"></i> Refresh Database</button>
+            </section>
+
+            <!-- 3. BOOKINGS DATA TABLE -->
+            <section class="table-container">
+                <table class="bookings-table" id="bookingsTable">
+                    <thead>
+                        <tr>
+                            <th width="80">ID</th>
+                            <th width="200">Customer Name</th>
+                            <th width="150">Phone Number</th>
+                            <th width="180">Service Type</th>
+                            <th>Additional Details</th>
+                            <th width="180">Received Date</th>
+                            <th width="80" style="text-align: center;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bookingsTableBody">
+                        <!-- Dynamic Rows Insertion -->
+                    </tbody>
+                </table>
+                <div class="no-data" id="noDataRow" style="display: none;">
+                    <i class="fa-solid fa-folder-open" style="font-size: 2.5rem; margin-bottom: 1rem; display: block; color: var(--text-muted);"></i>
+                    No service bookings found in the SQLite database.
+                </div>
+            </section>
+        </div>
+
+        <!-- PANEL 2: CONFIGURATION EDITOR -->
+        <div id="configPanel" style="display: none;">
+            <section class="table-container" style="padding: 2.5rem;">
+                <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; color: var(--gold); font-size: 1.5rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-circle-info"></i> Edit Showroom & Brand Information</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem;">Update address details, phone numbers, WhatsApp, taglines, GSTIN, and founder information. Saving here updates the live site instantly.</p>
+                
+                <form class="config-form-element" id="configEditForm">
+                    <div class="responsive-two-col gap-2">
+                        <!-- Left Column: Business Info -->
+                        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                            <h4 style="border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; color: white;">Business Identity</h4>
+                            
+                            <div class="form-group-admin">
+                                <label for="inputTagline">Showroom Tagline</label>
+                                <input type="text" id="inputTagline" class="admin-input-field" required>
+                            </div>
+                            <div class="form-group-admin">
+                                <label for="inputGstin">GSTIN Number</label>
+                                <input type="text" id="inputGstin" class="admin-input-field" required>
+                            </div>
+                            <div class="form-group-admin">
+                                <label for="inputAddress">Showroom Physical Address</label>
+                                <textarea id="inputAddress" class="admin-textarea-field" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group-admin">
+                                <label for="inputCopyrightYear">Copyright Year</label>
+                                <input type="text" id="inputCopyrightYear" class="admin-input-field" required>
+                            </div>
+                        </div>
+
+                        <!-- Right Column: Contact & Founder Details -->
+                        <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                            <h4 style="border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; color: white;">Contact & Leadership Info</h4>
+                            
+                            <div class="responsive-two-col gap-1">
+                                <div class="form-group-admin">
+                                    <label for="inputPhone1">Phone Number 1</label>
+                                    <input type="text" id="inputPhone1" class="admin-input-field" required>
+                                </div>
+                                <div class="form-group-admin">
+                                    <label for="inputPhone2">Phone Number 2</label>
+                                    <input type="text" id="inputPhone2" class="admin-input-field" required>
+                                </div>
+                            </div>
+                            <div class="responsive-two-col gap-1">
+                                <div class="form-group-admin">
+                                    <label for="inputEmail">Email Address</label>
+                                    <input type="email" id="inputEmail" class="admin-input-field" required>
+                                </div>
+                                <div class="form-group-admin">
+                                    <label for="inputWhatsapp">WhatsApp Number (e.g. 918072157403)</label>
+                                    <input type="text" id="inputWhatsapp" class="admin-input-field" required>
+                                </div>
+                            </div>
+                            
+                            <div class="responsive-two-col gap-1">
+                                <div class="form-group-admin">
+                                    <label for="inputOwnerName">Owner Name</label>
+                                    <input type="text" id="inputOwnerName" class="admin-input-field" required>
+                                </div>
+                                <div class="form-group-admin">
+                                    <label for="inputOwnerTitle">Owner Designation</label>
+                                    <input type="text" id="inputOwnerTitle" class="admin-input-field" required>
+                                </div>
+                            </div>
+                            <div class="form-group-admin">
+                                <label for="inputOwnerQuote">Founder's Quote / Vision Statement</label>
+                                <textarea id="inputOwnerQuote" class="admin-textarea-field" rows="2" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                                <!-- EMAIL BOOKING ALERTS SETTINGS -->
+                    <h4 style="color: var(--gold); font-family: 'Plus Jakarta Sans', sans-serif; margin-top: 3.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem;"><i class="fa-solid fa-envelope"></i> Email Booking Alerts Settings (SMTP)</h4>
+                    
+                    <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <input type="checkbox" id="inputEmailAlertsEnabled" style="width: 1.25rem; height: 1.25rem; accent-color: var(--gold); cursor: pointer;">
+                            <label for="inputEmailAlertsEnabled" style="color: white; font-weight: 600; cursor: pointer;">Enable Real-time Email Alerts on New Bookings</label>
+                        </div>
+                        
+                        <div class="responsive-two-col">
+                            <div class="form-group-admin">
+                                <label for="inputSmtpEmail">SMTP Sender Email</label>
+                                <input type="email" id="inputSmtpEmail" class="admin-input-field" placeholder="yourbusiness@gmail.com">
+                            </div>
+                            <div class="form-group-admin">
+                                <label for="inputSmtpPassword">SMTP App Password</label>
+                                <div style="position: relative; display: flex; align-items: center;">
+                                    <input type="password" id="inputSmtpPassword" class="admin-input-field" placeholder="Enter App Password Key" style="padding-right: 3rem; width: 100%;">
+                                    <button type="button" id="toggleSmtpPassword" style="position: absolute; right: 1rem; background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; padding: 0.25rem; display: flex; align-items: center;" title="Show/Hide Password">
+                                        <i class="fa-solid fa-eye" id="toggleSmtpPasswordIcon" style="color: var(--text-muted);"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="responsive-two-col">
+                            <div class="form-group-admin">
+                                <label for="inputAlertRecipientEmail">Recipient Email Address</label>
+                                <input type="email" id="inputAlertRecipientEmail" class="admin-input-field" placeholder="yourpersonal@gmail.com">
+                            </div>
+                            <div class="form-group-admin">
+                                <label style="display:flex; justify-content:space-between;">
+                                    <span>SMTP Server Host</span>
+                                    <span style="font-size:0.75rem; color:var(--text-muted);">Gmail: smtp.gmail.com</span>
+                                </label>
+                                <input type="text" id="inputSmtpServer" class="admin-input-field" placeholder="smtp.gmail.com">
+                            </div>
+                        </div>
+
+                        <div style="max-width: 200px;" class="form-group-admin">
+                            <label>SMTP Port (e.g. 587)</label>
+                            <input type="number" id="inputSmtpPort" class="admin-input-field" placeholder="587">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 3rem; display: flex; gap: 1.5rem; justify-content: flex-end;">
+                        <button type="button" class="btn-refresh" id="btnCancelConfig" style="background: rgba(255,255,255,0.05); color: white;"><i class="fa-solid fa-xmark"></i> Reset Form</button>
+                        <button type="submit" class="btn-refresh" id="btnSaveConfig" style="background: var(--gold); color: var(--primary); border-color: var(--gold);"><i class="fa-solid fa-floppy-disk"></i> Save Site Information</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <!-- PANEL 3: MEDIA MANAGER -->
+        <div id="mediaPanel" style="display: none;">
+            <section class="table-container" style="padding: 2.5rem;">
+                <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; color: var(--gold); font-size: 1.5rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-images"></i> Update Showroom & Brand Media</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2.5rem;">Upload new images to dynamically replace key assets across the website. The uploaded files will overwrite existing assets on the server.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                    <!-- Media Card 1: Logo -->
+                    <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; text-align: center; display: flex; flex-direction: column; gap: 1rem;">
+                        <h4 style="color: white; font-family: 'Plus Jakarta Sans', sans-serif;">Showroom Logo</h4>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px dashed var(--glass-border);">
+                            <img src="assets/logo.jpg" alt="Logo Preview" style="max-height: 100%; max-width: 100%; object-fit: contain;" id="previewLogo">
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Recommended: Square format (1:1), JPG/JPEG.</p>
+                        <input type="file" id="uploadLogoInput" accept="image/jpeg,image/jpg" style="display: none;">
+                        <button class="btn-refresh" onclick="document.getElementById('uploadLogoInput').click()" style="background: rgba(255,255,255,0.05); color: white;"><i class="fa-solid fa-cloud-arrow-up"></i> Select Logo Image</button>
+                        <button class="btn-refresh" id="btnUploadLogo" style="background: var(--gold); color: var(--primary); border-color: var(--gold); display: none;"><i class="fa-solid fa-circle-check"></i> Upload Logo</button>
+                    </div>
+
+                    <!-- Media Card 2: Owner Portrait -->
+                    <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; text-align: center; display: flex; flex-direction: column; gap: 1rem;">
+                        <h4 style="color: white; font-family: 'Plus Jakarta Sans', sans-serif;">Founder Portrait</h4>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px dashed var(--glass-border);">
+                            <img src="assets/owner.jpg" alt="Owner Preview" style="max-height: 100%; max-width: 100%; object-fit: cover; object-position: top center;" id="previewOwner">
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Recommended: Portrait (3:4 ratio), JPG/JPEG.</p>
+                        <input type="file" id="uploadOwnerInput" accept="image/jpeg,image/jpg" style="display: none;">
+                        <button class="btn-refresh" onclick="document.getElementById('uploadOwnerInput').click()" style="background: rgba(255,255,255,0.05); color: white;"><i class="fa-solid fa-cloud-arrow-up"></i> Select Portrait Image</button>
+                        <button class="btn-refresh" id="btnUploadOwner" style="background: var(--gold); color: var(--primary); border-color: var(--gold); display: none;"><i class="fa-solid fa-circle-check"></i> Upload Portrait</button>
+                    </div>
+
+                    <!-- Media Card 3: Hero BG -->
+                    <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; text-align: center; display: flex; flex-direction: column; gap: 1rem;">
+                        <h4 style="color: white; font-family: 'Plus Jakarta Sans', sans-serif;">Hero Banner BG</h4>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px dashed var(--glass-border);">
+                            <img src="assets/hero-bg.png" alt="Hero BG Preview" style="max-height: 100%; max-width: 100%; object-fit: cover;" id="previewHero">
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Recommended: Landscape, PNG format.</p>
+                        <input type="file" id="uploadHeroInput" accept="image/png" style="display: none;">
+                        <button class="btn-refresh" onclick="document.getElementById('uploadHeroInput').click()" style="background: rgba(255,255,255,0.05); color: white;"><i class="fa-solid fa-cloud-arrow-up"></i> Select Background Image</button>
+                        <button class="btn-refresh" id="btnUploadHero" style="background: var(--gold); color: var(--primary); border-color: var(--gold); display: none;"><i class="fa-solid fa-circle-check"></i> Upload Background</button>
+                    </div>
+                </div>
+
+                <!-- PORTFOLIO IMAGES SECTION -->
+                <h4 style="color: white; font-family: 'Plus Jakarta Sans', sans-serif; margin-top: 3.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem;"><i class="fa-solid fa-images"></i> Edit Portfolio Gallery Pictures</h4>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+                    <!-- Gallery Item 1 -->
+                    <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; text-align: center; display: flex; flex-direction: column; gap: 1rem;">
+                        <h5 style="color: white; font-family: 'Plus Jakarta Sans', sans-serif;">Showroom Floor (Item 1)</h5>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px dashed var(--glass-border);">
+                            <img src="assets/gallery-showroom.png" alt="Showroom Preview" style="max-height: 100%; max-width: 100%; object-fit: cover;" id="previewGalleryShowroom">
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Recommended: Landscape, PNG format.</p>
+                        <input type="file" id="uploadGalleryShowroomInput" accept="image/png" style="display: none;">
+                        <button class="btn-refresh" onclick="document.getElementById('uploadGalleryShowroomInput').click()" style="background: rgba(255,255,255,0.05); color: white;"><i class="fa-solid fa-cloud-arrow-up"></i> Select Image</button>
+                        <button class="btn-refresh" id="btnUploadGalleryShowroom" style="background: var(--gold); color: var(--primary); border-color: var(--gold); display: none;"><i class="fa-solid fa-circle-check"></i> Upload</button>
+                    </div>
+
+                    <!-- Gallery Item 2 -->
+                    <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; text-align: center; display: flex; flex-direction: column; gap: 1rem;">
+                        <h5 style="color: white; font-family: 'Plus Jakarta Sans', sans-serif;">Residential Split (Item 2)</h5>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px dashed var(--glass-border);">
+                            <img src="assets/gallery-split.png" alt="Split Preview" style="max-height: 100%; max-width: 100%; object-fit: cover;" id="previewGallerySplit">
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Recommended: Landscape, PNG format.</p>
+                        <input type="file" id="uploadGallerySplitInput" accept="image/png" style="display: none;">
+                        <button class="btn-refresh" onclick="document.getElementById('uploadGallerySplitInput').click()" style="background: rgba(255,255,255,0.05); color: white;"><i class="fa-solid fa-cloud-arrow-up"></i> Select Image</button>
+                        <button class="btn-refresh" id="btnUploadGallerySplit" style="background: var(--gold); color: var(--primary); border-color: var(--gold); display: none;"><i class="fa-solid fa-circle-check"></i> Upload</button>
+                    </div>
+
+                    <!-- Gallery Item 3 -->
+                    <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; text-align: center; display: flex; flex-direction: column; gap: 1rem;">
+                        <h5 style="color: white; font-family: 'Plus Jakarta Sans', sans-serif;">Commercial VRF (Item 3)</h5>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px dashed var(--glass-border);">
+                            <img src="assets/gallery-commercial-vrv.png" alt="VRF Preview" style="max-height: 100%; max-width: 100%; object-fit: cover;" id="previewGalleryCommercialVrv">
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Recommended: Landscape, PNG format.</p>
+                        <input type="file" id="uploadGalleryCommercialVrvInput" accept="image/png" style="display: none;">
+                        <button class="btn-refresh" onclick="document.getElementById('uploadGalleryCommercialVrvInput').click()" style="background: rgba(255,255,255,0.05); color: white;"><i class="fa-solid fa-cloud-arrow-up"></i> Select Image</button>
+                        <button class="btn-refresh" id="btnUploadGalleryCommercialVrv" style="background: var(--gold); color: var(--primary); border-color: var(--gold); display: none;"><i class="fa-solid fa-circle-check"></i> Upload</button>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2rem;">
+                    <!-- Gallery Item 4 -->
+                    <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; text-align: center; display: flex; flex-direction: column; gap: 1rem;">
+                        <h5 style="color: white; font-family: 'Plus Jakarta Sans', sans-serif;">Precision Repairs (Item 4)</h5>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px dashed var(--glass-border);">
+                            <img src="assets/gallery-repair-gas.png" alt="Repairs Preview" style="max-height: 100%; max-width: 100%; object-fit: cover;" id="previewGalleryRepairGas">
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Recommended: Landscape, PNG format.</p>
+                        <input type="file" id="uploadGalleryRepairGasInput" accept="image/png" style="display: none;">
+                        <button class="btn-refresh" onclick="document.getElementById('uploadGalleryRepairGasInput').click()" style="background: rgba(255,255,255,0.05); color: white;"><i class="fa-solid fa-cloud-arrow-up"></i> Select Image</button>
+                        <button class="btn-refresh" id="btnUploadGalleryRepairGas" style="background: var(--gold); color: var(--primary); border-color: var(--gold); display: none;"><i class="fa-solid fa-circle-check"></i> Upload</button>
+                    </div>
+
+                    <!-- Gallery Item 5 -->
+                    <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; text-align: center; display: flex; flex-direction: column; gap: 1rem;">
+                        <h5 style="color: white; font-family: 'Plus Jakarta Sans', sans-serif;">Office Cassette (Item 5)</h5>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px dashed var(--glass-border);">
+                            <img src="assets/gallery-office-cassette.png" alt="Cassette Preview" style="max-height: 100%; max-width: 100%; object-fit: cover;" id="previewGalleryOfficeCassette">
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Recommended: Landscape, PNG format.</p>
+                        <input type="file" id="uploadGalleryOfficeCassetteInput" accept="image/png" style="display: none;">
+                        <button class="btn-refresh" onclick="document.getElementById('uploadGalleryOfficeCassetteInput').click()" style="background: rgba(255,255,255,0.05); color: white;"><i class="fa-solid fa-cloud-arrow-up"></i> Select Image</button>
+                        <button class="btn-refresh" id="btnUploadGalleryOfficeCassette" style="background: var(--gold); color: var(--primary); border-color: var(--gold); display: none;"><i class="fa-solid fa-circle-check"></i> Upload</button>
+                    </div>
+
+                    <!-- Gallery Item 6 -->
+                    <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; text-align: center; display: flex; flex-direction: column; gap: 1rem;">
+                        <h5 style="color: white; font-family: 'Plus Jakarta Sans', sans-serif;">PCB Repair (Item 6)</h5>
+                        <div style="height: 120px; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px dashed var(--glass-border);">
+                            <img src="assets/gallery-repair-pcb.png" alt="PCB Preview" style="max-height: 100%; max-width: 100%; object-fit: cover;" id="previewGalleryRepairPcb">
+                        </div>
+                        <p style="font-size: 0.75rem; color: var(--text-muted);">Recommended: Landscape, PNG format.</p>
+                        <input type="file" id="uploadGalleryRepairPcbInput" accept="image/png" style="display: none;">
+                        <button class="btn-refresh" onclick="document.getElementById('uploadGalleryRepairPcbInput').click()" style="background: rgba(255,255,255,0.05); color: white;"><i class="fa-solid fa-cloud-arrow-up"></i> Select Image</button>
+                        <button class="btn-refresh" id="btnUploadGalleryRepairPcb" style="background: var(--gold); color: var(--primary); border-color: var(--gold); display: none;"><i class="fa-solid fa-circle-check"></i> Upload</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PANEL 4: PRODUCTS EDITOR -->
+        <div id="productsPanel" style="display: none;">
+            <section class="table-container" style="padding: 2.5rem;">
+                <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; color: var(--gold); font-size: 1.5rem; margin-bottom: 0.5rem;"><i class="fa-solid fa-boxes-packing"></i> Manage Brand Catalog & Product Images</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 2rem;">Select an AC brand from the dropdown to edit its title, descriptions, product specifications, prices, and image links.</p>
+                
+                <div class="form-group-admin" style="max-width: 300px; margin-bottom: 2.5rem;">
+                    <label for="selectProductBrand">Select AC Brand to Edit</label>
+                    <select id="selectProductBrand" class="admin-input-field" style="background: rgba(15, 23, 42, 0.9);">
+                        <option value="">-- Select Brand --</option>
+                        <option value="daikin">Daikin</option>
+                        <option value="lg">LG</option>
+                        <option value="voltas">Voltas</option>
+                        <option value="bluestar">Blue Star</option>
+                        <option value="hitachi">Hitachi</option>
+                        <option value="panasonic">Panasonic</option>
+                        <option value="carrier">Carrier</option>
+                        <option value="samsung">Samsung</option>
+                        <option value="haier">Haier</option>
+                        <option value="lloyd">Lloyd</option>
+                        <option value="mitsubishi">Mitsubishi</option>
+                        <option value="ogeneral">O General</option>
+                        <option value="godrej">Godrej</option>
+                        <option value="whirlpool">Whirlpool</option>
+                        <option value="ifb">IFB</option>
+                    </select>
+                </div>
+
+                <form class="config-form-element" id="brandProductsEditForm" style="display: none;">
+                    <div class="responsive-two-col gap-2">
+                        <!-- Left Product Card Form -->
+                        <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; display: flex; flex-direction: column; gap: 1.25rem;">
+                            <h4 id="prod1HeaderTitle" style="color: var(--gold); border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; font-family: 'Plus Jakarta Sans', sans-serif;">Product Model 1</h4>
+                            
+                            <div class="form-group-admin">
+                                <label for="prod1Name">Model Name</label>
+                                <input type="text" id="prod1Name" class="admin-input-field" required>
+                            </div>
+                            <div class="form-group-admin">
+                                <label for="prod1Price">Price (e.g. ₹42,000)</label>
+                                <input type="text" id="prod1Price" class="admin-input-field" required>
+                            </div>
+                            <div class="form-group-admin">
+                                <label for="prod1Specs">Technical Specifications</label>
+                                <textarea id="prod1Specs" class="admin-textarea-field" rows="2" required></textarea>
+                            </div>
+                            <div class="form-group-admin">
+                                <label for="prod1Image">Product Image Link (URL)</label>
+                                <input type="text" id="prod1Image" class="admin-input-field" required>
+                            </div>
+                        </div>
+
+                        <!-- Right Product Card Form -->
+                        <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--glass-border); padding: 1.5rem; border-radius: 1rem; display: flex; flex-direction: column; gap: 1.25rem;">
+                            <h4 id="prod2HeaderTitle" style="color: var(--gold); border-bottom: 1px solid var(--glass-border); padding-bottom: 0.5rem; font-family: 'Plus Jakarta Sans', sans-serif;">Product Model 2</h4>
+                            
+                            <div class="form-group-admin">
+                                <label for="prod2Name">Model Name</label>
+                                <input type="text" id="prod2Name" class="admin-input-field" required>
+                            </div>
+                            <div class="form-group-admin">
+                                <label for="prod2Price">Price (e.g. ₹74,000)</label>
+                                <input type="text" id="prod2Price" class="admin-input-field" required>
+                            </div>
+                            <div class="form-group-admin">
+                                <label for="prod2Specs">Technical Specifications</label>
+                                <textarea id="prod2Specs" class="admin-textarea-field" rows="2" required></textarea>
+                            </div>
+                            <div class="form-group-admin">
+                                <label for="prod2Image">Product Image Link (URL)</label>
+                                <input type="text" id="prod2Image" class="admin-input-field" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 3rem; display: flex; gap: 1.5rem; justify-content: flex-end;">
+                        <button type="submit" class="btn-refresh" style="background: var(--gold); color: var(--primary); border-color: var(--gold);"><i class="fa-solid fa-floppy-disk"></i> Save Catalog Updates</button>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- BOOKING EDIT MODAL -->
+    <div class="auth-overlay" id="editBookingModal" style="display: none; background: rgba(8, 13, 26, 0.85); backdrop-filter: blur(10px); z-index: 999999;">
+        <div class="auth-card" style="max-width: 500px; text-align: left; padding: 2.5rem;">
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; color: var(--gold); font-size: 1.5rem; margin-bottom: 1.5rem;"><i class="fa-solid fa-pen-to-square"></i> Edit Booking Request</h3>
+            
+            <form class="auth-form" id="editBookingForm" style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <input type="hidden" id="editBookingId">
+                <div class="form-group-admin">
+                    <label for="editBookingName">Customer Name</label>
+                    <input type="text" id="editBookingName" class="admin-input-field" required>
+                </div>
+                <div class="form-group-admin">
+                    <label for="editBookingPhone">Phone Number</label>
+                    <input type="text" id="editBookingPhone" class="admin-input-field" required>
+                </div>
+                <div class="form-group-admin">
+                    <label for="editBookingService">Service Type</label>
+                    <select id="editBookingService" class="admin-input-field" style="background: rgba(15, 23, 42, 0.9);" required>
+                        <option value="sales">Sales Inquiry</option>
+                        <option value="installation">Installation</option>
+                        <option value="repair">Repair</option>
+                        <option value="maintenance">Jet Cleaning</option>
+                        <option value="gas">Gas Refill</option>
+                        <option value="amc">AMC Plan</option>
+                    </select>
+                </div>
+                <div class="form-group-admin">
+                    <label for="editBookingNotes">Additional Details / Notes</label>
+                    <textarea id="editBookingNotes" class="admin-textarea-field" rows="3"></textarea>
+                </div>
+                
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" class="btn-refresh" id="btnCancelEditBooking" style="background: rgba(255,255,255,0.05); color: white;"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                    <button type="submit" class="btn-refresh" style="background: var(--gold); color: var(--primary); border-color: var(--gold);"><i class="fa-solid fa-floppy-disk"></i> Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="admin-footer">
+        <p>&copy; 2025 HI-TECH AIRCONS. Private database control console. Authorized personnel only.</p>
+    </footer>
+
+    <!-- CLIENT CONTROLLER SCRIPT -->
+    <script>
+        const ADMIN_TOKEN = "hi-tech-admin-token-2026";
+        let bookingsData = [];
+        let currentConfig = {};
+        let productsData = {};
+
+        // Auth form handler
+        const authOverlay = document.getElementById('authOverlay');
+        const authForm = document.getElementById('authForm');
+        const authPassword = document.getElementById('authPassword');
+        const authError = document.getElementById('authError');
+        const adminContent = document.getElementById('adminContent');
+
+        // Check if token is already verified in this session
+        if (sessionStorage.getItem('admin_authenticated') === 'true') {
+            authOverlay.style.display = 'none';
+            adminContent.style.display = 'block';
+            fetchBookings();
+            fetchConfig();
+            fetchProducts();
+        }
+
+        authForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (authPassword.value === 'hitechilyasaircons') {
+                sessionStorage.setItem('admin_authenticated', 'true');
+                authOverlay.style.display = 'none';
+                adminContent.style.display = 'block';
+                fetchBookings();
+                fetchConfig();
+                fetchProducts();
+            } else {
+                authError.style.display = 'block';
+                authPassword.value = '';
+                authPassword.focus();
+            }
+        });
+
+        // Logout action
+        document.getElementById('btnLogout').addEventListener('click', () => {
+            sessionStorage.removeItem('admin_authenticated');
+            location.reload();
+        });
+
+        // Refresh database
+        document.getElementById('btnRefresh').addEventListener('click', fetchBookings);
+
+        // Tab switching logic
+        const tabBookings = document.getElementById('tabBookings');
+        const tabConfig = document.getElementById('tabConfig');
+        const tabMedia = document.getElementById('tabMedia');
+        const tabProducts = document.getElementById('tabProducts');
+        
+        const bookingsPanel = document.getElementById('bookingsPanel');
+        const configPanel = document.getElementById('configPanel');
+        const mediaPanel = document.getElementById('mediaPanel');
+        const productsPanel = document.getElementById('productsPanel');
+
+        tabBookings.addEventListener('click', () => {
+            setActiveTab(tabBookings, bookingsPanel);
+        });
+
+        tabConfig.addEventListener('click', () => {
+            setActiveTab(tabConfig, configPanel);
+            fetchConfig();
+        });
+
+        tabMedia.addEventListener('click', () => {
+            setActiveTab(tabMedia, mediaPanel);
+        });
+
+        tabProducts.addEventListener('click', () => {
+            setActiveTab(tabProducts, productsPanel);
+            fetchProducts();
+        });
+
+        function setActiveTab(activeTab, activePanel) {
+            [tabBookings, tabConfig, tabMedia, tabProducts].forEach(t => t.classList.remove('active'));
+            [bookingsPanel, configPanel, mediaPanel, productsPanel].forEach(p => p.style.display = 'none');
+            
+            activeTab.classList.add('active');
+            activePanel.style.display = 'block';
+        }
+
+        // Fetch API request (Bookings)
+        async function fetchBookings() {
+            try {
+                const response = await fetch('/api/admin/bookings', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error("Failed to load database. Unauthorized.");
+                }
+                
+                const data = await response.json();
+                if (data.success) {
+                    bookingsData = data.bookings;
+                    renderBookings(bookingsData);
+                    calculateStats(bookingsData);
+                }
+            } catch (err) {
+                alert(err.message);
+                sessionStorage.removeItem('admin_authenticated');
+                location.reload();
+            }
+        }
+
+        // Fetch website config details
+        async function fetchConfig() {
+            try {
+                const response = await fetch('/api/config');
+                if (!response.ok) throw new Error("Failed to load website configuration.");
+                currentConfig = await response.json();
+                populateConfigForm(currentConfig);
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        // Fetch products catalog list
+        async function fetchProducts() {
+            try {
+                const response = await fetch('/api/products');
+                if (!response.ok) throw new Error("Failed to load products list.");
+                productsData = await response.json();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        // Fill config form fields
+        function populateConfigForm(config) {
+            document.getElementById('inputTagline').value = config.tagline || '';
+            document.getElementById('inputGstin').value = config.gstin || '';
+            document.getElementById('inputAddress').value = config.address || '';
+            document.getElementById('inputCopyrightYear').value = config.copyright_year || '';
+            document.getElementById('inputPhone1').value = config.phone1 || '';
+            document.getElementById('inputPhone2').value = config.phone2 || '';
+            document.getElementById('inputEmail').value = config.email || '';
+            document.getElementById('inputWhatsapp').value = config.whatsapp_num || '';
+            document.getElementById('inputOwnerName').value = config.owner_name || '';
+            document.getElementById('inputOwnerTitle').value = config.owner_title || '';
+            document.getElementById('inputOwnerQuote').value = config.owner_quote || '';
+            
+            // Email Alerts
+            document.getElementById('inputEmailAlertsEnabled').checked = config.email_alerts_enabled || false;
+            document.getElementById('inputSmtpEmail').value = config.smtp_email || '';
+            document.getElementById('inputSmtpPassword').value = config.smtp_password || '';
+            document.getElementById('inputAlertRecipientEmail').value = config.alert_recipient_email || '';
+            document.getElementById('inputSmtpServer').value = config.smtp_server || 'smtp.gmail.com';
+            document.getElementById('inputSmtpPort').value = config.smtp_port || 587;
+        }
+
+        // Reset config form button handler
+        document.getElementById('btnCancelConfig').addEventListener('click', () => {
+            populateConfigForm(currentConfig);
+        });
+
+        // Save config changes form handler
+        document.getElementById('configEditForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const updatedConfig = {
+                tagline: document.getElementById('inputTagline').value.trim(),
+                gstin: document.getElementById('inputGstin').value.trim(),
+                address: document.getElementById('inputAddress').value.trim(),
+                copyright_year: document.getElementById('inputCopyrightYear').value.trim(),
+                phone1: document.getElementById('inputPhone1').value.trim(),
+                phone2: document.getElementById('inputPhone2').value.trim(),
+                email: document.getElementById('inputEmail').value.trim(),
+                whatsapp_num: document.getElementById('inputWhatsapp').value.trim(),
+                owner_name: document.getElementById('inputOwnerName').value.trim(),
+                owner_title: document.getElementById('inputOwnerTitle').value.trim(),
+                owner_quote: document.getElementById('inputOwnerQuote').value.trim(),
+                email_alerts_enabled: document.getElementById('inputEmailAlertsEnabled').checked,
+                smtp_email: document.getElementById('inputSmtpEmail').value.trim(),
+                smtp_password: document.getElementById('inputSmtpPassword').value.trim(),
+                alert_recipient_email: document.getElementById('inputAlertRecipientEmail').value.trim(),
+                smtp_server: document.getElementById('inputSmtpServer').value.trim(),
+                smtp_port: parseInt(document.getElementById('inputSmtpPort').value.trim()) || 587
+            };
+
+            try {
+                const response = await fetch('/api/config', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`
+                    },
+                    body: JSON.stringify(updatedConfig)
+                });
+
+                const resData = await response.json();
+                if (response.ok && resData.success) {
+                    alert("Website configuration updated successfully!");
+                    currentConfig = updatedConfig;
+                } else {
+                    alert("Failed to update website configuration: " + (resData.error || 'Unknown error'));
+                }
+            } catch (err) {
+                alert("Network error: " + err.message);
+            }
+        });
+
+        // Brand catalog selector logic
+        const selectBrand = document.getElementById('selectProductBrand');
+        const catalogForm = document.getElementById('brandProductsEditForm');
+
+        selectBrand.addEventListener('change', () => {
+            const brandKey = selectBrand.value;
+            if (!brandKey || !productsData[brandKey]) {
+                catalogForm.style.display = 'none';
+                return;
+            }
+
+            const brandObj = productsData[brandKey];
+            
+            // Set Headers
+            document.getElementById('prod1HeaderTitle').innerText = `${brandObj.title} - Product 1`;
+            document.getElementById('prod2HeaderTitle').innerText = `${brandObj.title} - Product 2`;
+
+            // Fill inputs Product 1
+            const p1 = brandObj.products[0];
+            document.getElementById('prod1Name').value = p1.name || '';
+            document.getElementById('prod1Price').value = p1.price || '';
+            document.getElementById('prod1Specs').value = p1.specs || '';
+            document.getElementById('prod1Image').value = p1.image || '';
+
+            // Fill inputs Product 2
+            const p2 = brandObj.products[1];
+            document.getElementById('prod2Name').value = p2.name || '';
+            document.getElementById('prod2Price').value = p2.price || '';
+            document.getElementById('prod2Specs').value = p2.specs || '';
+            document.getElementById('prod2Image').value = p2.image || '';
+
+            catalogForm.style.display = 'block';
+        });
+
+        // Save catalog updates
+        catalogForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const brandKey = selectBrand.value;
+            if (!brandKey) return;
+
+            // Clone data first
+            const brandObj = { ...productsData[brandKey] };
+            brandObj.products = [
+                {
+                    name: document.getElementById('prod1Name').value.trim(),
+                    price: document.getElementById('prod1Price').value.trim(),
+                    specs: document.getElementById('prod1Specs').value.trim(),
+                    image: document.getElementById('prod1Image').value.trim()
+                },
+                {
+                    name: document.getElementById('prod2Name').value.trim(),
+                    price: document.getElementById('prod2Price').value.trim(),
+                    specs: document.getElementById('prod2Specs').value.trim(),
+                    image: document.getElementById('prod2Image').value.trim()
+                }
+            ];
+
+            const updatedProductsData = { ...productsData };
+            updatedProductsData[brandKey] = brandObj;
+
+            try {
+                const response = await fetch('/api/products', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`
+                    },
+                    body: JSON.stringify(updatedProductsData)
+                });
+
+                if (response.ok) {
+                    productsData = updatedProductsData;
+                    alert(`${selectBrand.options[selectBrand.selectedIndex].text} catalog and images saved successfully!`);
+                } else {
+                    alert("Failed to save catalog updates.");
+                }
+            } catch (err) {
+                alert("Network error: " + err.message);
+            }
+        });
+
+        // Calculate and display stats
+        function calculateStats(bookings) {
+            document.getElementById('statTotal').innerText = bookings.length;
+            
+            const salesCount = bookings.filter(b => b.service === 'sales').length;
+            document.getElementById('statSales').innerText = salesCount;
+            
+            const serviceCount = bookings.filter(b => b.service !== 'sales').length;
+            document.getElementById('statServices').innerText = serviceCount;
+        }
+
+        // Render rows in table
+        function renderBookings(bookings) {
+            const tableBody = document.getElementById('bookingsTableBody');
+            const noDataRow = document.getElementById('noDataRow');
+            tableBody.innerHTML = '';
+            
+            if (bookings.length === 0) {
+                noDataRow.style.display = 'block';
+                return;
+            }
+            
+            noDataRow.style.display = 'none';
+            
+            bookings.forEach(b => {
+                const tr = document.createElement('tr');
+                tr.setAttribute('data-id', b.id);
+                
+                let serviceBadge = '';
+                switch(b.service) {
+                    case 'sales': serviceBadge = '<span class="badge-service badge-sales">Sales Inquiry</span>'; break;
+                    case 'installation': serviceBadge = '<span class="badge-service badge-install">Installation</span>'; break;
+                    case 'repair': serviceBadge = '<span class="badge-service badge-repair">Repair</span>'; break;
+                    case 'maintenance': serviceBadge = '<span class="badge-service badge-maint">Jet Cleaning</span>'; break;
+                    case 'gas': serviceBadge = '<span class="badge-service badge-gas">Gas Refill</span>'; break;
+                    case 'amc': serviceBadge = '<span class="badge-service badge-amc">AMC Plan</span>'; break;
+                    default: serviceBadge = `<span class="badge-service">${b.service}</span>`;
+                }
+                
+                tr.innerHTML = `
+                    <td><strong>#${b.id}</strong></td>
+                    <td style="font-weight: 600; color: #fff;">${escapeHtml(b.name)}</td>
+                    <td><a href="tel:${b.phone}" style="color: var(--gold); text-decoration: underline;">${escapeHtml(b.phone)}</a></td>
+                    <td>${serviceBadge}</td>
+                    <td style="color: var(--text-muted); font-size: 0.9rem;">${escapeHtml(b.notes || '-')}</td>
+                    <td style="color: var(--text-muted); font-size: 0.85rem;">${b.created_at}</td>
+                    <td style="text-align: center; display: flex; gap: 0.5rem; justify-content: center;">
+                        <button class="btn-delete" onclick="openEditBookingModal(${b.id})" title="Edit record" style="color: var(--gold);"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="btn-delete" onclick="deleteBooking(${b.id})" title="Delete record"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // Open booking editor modal
+        function openEditBookingModal(id) {
+            const b = bookingsData.find(booking => booking.id === id);
+            if (!b) return;
+            
+            document.getElementById('editBookingId').value = b.id;
+            document.getElementById('editBookingName').value = b.name;
+            document.getElementById('editBookingPhone').value = b.phone;
+            document.getElementById('editBookingService').value = b.service;
+            document.getElementById('editBookingNotes').value = b.notes || '';
+            
+            document.getElementById('editBookingModal').style.display = 'flex';
+        }
+
+        // Cancel editing booking
+        document.getElementById('btnCancelEditBooking').addEventListener('click', () => {
+            document.getElementById('editBookingModal').style.display = 'none';
+        });
+
+        // Submit edited booking details
+        document.getElementById('editBookingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('editBookingId').value;
+            const updatedBooking = {
+                name: document.getElementById('editBookingName').value.trim(),
+                phone: document.getElementById('editBookingPhone').value.trim(),
+                service: document.getElementById('editBookingService').value,
+                notes: document.getElementById('editBookingNotes').value.trim()
+            };
+
+            try {
+                const response = await fetch(`/api/admin/bookings/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`
+                    },
+                    body: JSON.stringify(updatedBooking)
+                });
+
+                if (response.ok) {
+                    const idx = bookingsData.findIndex(booking => booking.id == id);
+                    if (idx !== -1) {
+                        bookingsData[idx] = { ...bookingsData[idx], ...updatedBooking };
+                    }
+                    renderBookings(bookingsData);
+                    calculateStats(bookingsData);
+                    document.getElementById('editBookingModal').style.display = 'none';
+                    alert("Booking request updated successfully!");
+                } else {
+                    alert("Failed to update booking details.");
+                }
+            } catch (err) {
+                alert("Network error: " + err.message);
+            }
+        });
+
+        // Delete API request
+        async function deleteBooking(id) {
+            if (!confirm(`Are you sure you want to delete booking record #${id} from the database?`)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/api/admin/bookings/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${ADMIN_TOKEN}`
+                    }
+                });
+                
+                if (response.ok) {
+                    bookingsData = bookingsData.filter(b => b.id !== id);
+                    renderBookings(bookingsData);
+                    calculateStats(bookingsData);
+                } else {
+                    alert("Error deleting record from database.");
+                }
+            } catch (err) {
+                alert("Network error: " + err.message);
+            }
+        }
+
+        // Media upload setups (Primary + 6 Gallery Items)
+        setupMediaUpload('uploadLogoInput', 'previewLogo', 'btnUploadLogo', 'logo');
+        setupMediaUpload('uploadOwnerInput', 'previewOwner', 'btnUploadOwner', 'owner');
+        setupMediaUpload('uploadHeroInput', 'previewHero', 'btnUploadHero', 'hero-bg');
+
+        setupMediaUpload('uploadGalleryShowroomInput', 'previewGalleryShowroom', 'btnUploadGalleryShowroom', 'gallery-showroom');
+        setupMediaUpload('uploadGallerySplitInput', 'previewGallerySplit', 'btnUploadGallerySplit', 'gallery-split');
+        setupMediaUpload('uploadGalleryCommercialVrvInput', 'previewGalleryCommercialVrv', 'btnUploadGalleryCommercialVrv', 'gallery-commercial-vrv');
+        setupMediaUpload('uploadGalleryRepairGasInput', 'previewGalleryRepairGas', 'btnUploadGalleryRepairGas', 'gallery-repair-gas');
+        setupMediaUpload('uploadGalleryOfficeCassetteInput', 'previewGalleryOfficeCassette', 'btnUploadGalleryOfficeCassette', 'gallery-office-cassette');
+        setupMediaUpload('uploadGalleryRepairPcbInput', 'previewGalleryRepairPcb', 'btnUploadGalleryRepairPcb', 'gallery-repair-pcb');
+
+        function setupMediaUpload(inputId, previewId, uploadBtnId, targetKey) {
+            const fileInput = document.getElementById(inputId);
+            const previewImg = document.getElementById(previewId);
+            const uploadBtn = document.getElementById(uploadBtnId);
+            if (!fileInput || !previewImg || !uploadBtn) return;
+
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        previewImg.src = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                    uploadBtn.style.display = 'inline-block';
+                }
+            });
+
+            uploadBtn.addEventListener('click', async () => {
+                const file = fileInput.files[0];
+                if (!file) return;
+
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('target', targetKey);
+
+                try {
+                    uploadBtn.disabled = true;
+                    uploadBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
+                    const response = await fetch('/api/admin/upload', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${ADMIN_TOKEN}`
+                        },
+                        body: formData
+                    });
+
+                    if (response.ok) {
+                        alert(`${targetKey.toUpperCase()} image updated successfully!`);
+                        uploadBtn.style.display = 'none';
+                        // Add cache buster
+                        const ext = (targetKey.startsWith('gallery-') || targetKey === 'hero-bg') ? 'png' : 'jpg';
+                        previewImg.src = `assets/${targetKey}.${ext}?t=${Date.now()}`;
+                    } else {
+                        alert(`Upload failed for ${targetKey}.`);
+                    }
+                } catch (err) {
+                    alert("Upload error: " + err.message);
+                } finally {
+                    uploadBtn.disabled = false;
+                    uploadBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Upload';
+                }
+            });
+        }
+
+        // Live Search filter
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            const filtered = bookingsData.filter(b => {
+                return b.name.toLowerCase().includes(query) || 
+                       b.phone.toLowerCase().includes(query) || 
+                       b.notes.toLowerCase().includes(query) || 
+                       b.service.toLowerCase().includes(query);
+            });
+            renderBookings(filtered);
+        });
+
+        // Toggle SMTP Password Visibility
+        const toggleSmtpPasswordBtn = document.getElementById('toggleSmtpPassword');
+        const inputSmtpPassword = document.getElementById('inputSmtpPassword');
+        const toggleSmtpPasswordIcon = document.getElementById('toggleSmtpPasswordIcon');
+
+        if (toggleSmtpPasswordBtn && inputSmtpPassword && toggleSmtpPasswordIcon) {
+            toggleSmtpPasswordBtn.addEventListener('click', () => {
+                if (inputSmtpPassword.type === 'password') {
+                    inputSmtpPassword.type = 'text';
+                    toggleSmtpPasswordIcon.classList.remove('fa-eye');
+                    toggleSmtpPasswordIcon.classList.add('fa-eye-slash');
+                } else {
+                    inputSmtpPassword.type = 'password';
+                    toggleSmtpPasswordIcon.classList.remove('fa-eye-slash');
+                    toggleSmtpPasswordIcon.classList.add('fa-eye');
+                }
+            });
+        }
+
+        // Helper to prevent XSS
+        function escapeHtml(text) {
+            if (!text) return '';
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+    </script>
+</body>
+</html>

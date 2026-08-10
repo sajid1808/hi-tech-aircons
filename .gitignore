@@ -1,0 +1,5 @@
+hi-tech-aircons.zip
+bookings.db
+__pycache__/
+*.pyc
+.env

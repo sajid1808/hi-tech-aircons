@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HI-TECH AIRCONS is Trichy's premium multi-brand AC showroom. We provide sales, expert installation, repair, deep cleaning maintenance, and AMC services for residential and commercial HVAC spaces.">
+    <meta name="keywords" content="AC sales Trichy, Air conditioner repair, HVAC installation, HI-TECH AIRCONS, Daikin, LG, Voltas, Blue Star, Trichy AC showroom, AC maintenance">
+    <meta name="author" content="HI-TECH AIRCONS">
+    
+    <!-- Open Graph for Socials -->
+    <meta property="og:title" content="HI-TECH AIRCONS | Premium AC Showroom & HVAC Services">
+    <meta property="og:description" content="Experience luxury cooling solutions from top brands like Daikin, LG, Voltas, and Blue Star. Expert HVAC installation and maintenance services in Trichy.">
+    <meta property="og:type" content="website">
+    
+    <title>HI-TECH AIRCONS | Premium Multi-Brand AC Showroom & Services</title>
+    
+    <!-- Favicon (Fallback to brand logo) -->
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+    
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Custom CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- STICKY HEADER & NAVBAR -->
+    <header class="header" id="mainHeader">
+        <div class="container header-container">
+            <a href="#" class="logo-block" id="logoLink">
+                <img src="assets/logo.jpg" alt="HI-TECH AIRCONS Logo" id="headerLogoImg">
+                <div class="logo-text-group">
+                    <span class="brand-name" id="brandNameText">HI-TECH <span>AIRCONS</span></span>
+                    <span class="logo-subtext" id="configTaglineHeader">Smart Cooling for smart people</span>
+                </div>
+            </a>
+            
+            <!-- Desktop Navigation Links -->
+            <nav class="desktop-nav" id="desktopNavMenu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#brands" class="nav-link">Brands</a>
+                <a href="#services" class="nav-link">Services</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            
+            <div class="nav-actions">
+                <button class="btn btn-primary btn-book-trigger" id="navBookBtn">Book Service</button>
+                <button class="hamburger" id="menuToggle" aria-label="Toggle Navigation">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION MENU DRAWER -->
+    <div class="mobile-nav-overlay" id="mobileOverlay"></div>
+    <nav class="mobile-nav" id="mobileDrawer">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#brands" class="nav-link">Brands</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#gallery" class="nav-link">Gallery</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <button class="btn btn-primary btn-book-trigger" id="mobileBookBtn" style="margin-top: 1.5rem;">Book Service</button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <!-- Visual Assets -->
+        <img class="hero-bg-media" src="assets/hero-bg.png" alt="Luxury Interior AC background">
+        <div class="hero-overlay-gradient"></div>
+        <div class="airflow-wave"></div>
+        <div class="airflow-wave airflow-wave-2"></div>
+        
+        <div class="container">
+            <div class="hero-grid">
+                <!-- Content (Left) -->
+                <div class="hero-content">
+                    <div class="hero-tagline">
+                        <span id="configTaglineHero">Smart Cooling for smart people</span>
+                    </div>
+                    <h1>Stay Cool.<br><span class="accent-text">Live Comfortable.</span></h1>
+                    <p class="hero-sub">
+                        Experience premium cooling solutions with HI-TECH AIRCONS. We provide top-quality air conditioners from leading global brands along with professional installation, reliable repairs, and expert maintenance services.
+                    </p>
+                    <div class="hero-cta-group">
+                        <button class="btn btn-primary btn-book-trigger" id="heroBookBtn">
+                            <i class="fa-regular fa-calendar-check"></i> Book a Service
+                        </button>
+                        <a href="tel:8072157403" class="btn btn-secondary" id="heroCallBtn">
+                            <i class="fa-solid fa-phone-volume"></i> Call Now
+                        </a>
+                        <a href="https://wa.me/918072157403?text=Hi%20HI-TECH%20AIRCONS%2C%20I%20would%20like%20to%20enquire%20about%20AC%20sales/service." target="_blank" class="btn btn-whatsapp" id="heroWhatsappBtn">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp Enquiry
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="hero-stat-item">
+                            <h3>15+</h3>
+                            <p>Premium Brands</p>
+                        </div>
+                        <div class="hero-stat-item">
+                            <h3>1000+</h3>
+                            <p>Happy Spaces</p>
+                        </div>
+                        <div class="hero-stat-item">
+                            <h3>10+</h3>
+                            <p>Years of Trust</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Graphic/Visual (Right) -->
+                <div class="hero-visual">
+                    <div class="hero-image-wrapper">
+                        <img src="assets/hero-hvac.png" alt="HVAC Premium Installation mockup">
+                    </div>
+                    <div class="glass-panel hero-badge-floating">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                        <div>
+                            <h4>Certified Staff</h4>
+                            <p>Expert Factory-trained HVAC Engineers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT US SECTION -->
+    <section class="section-padding" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <!-- Visuals (Left) -->
+                <div class="about-visual reveal">
+                    <div class="about-image-composite">
+                        <img src="assets/about-hvac.png" alt="Commercial HVAC installation rooftop">
+                    </div>
+                    <div class="glass-panel about-metric-card">
+                        <span class="metric-number">100%</span>
+                        <span class="metric-label">Genuine Products</span>
+                        <span class="metric-sub">Direct Brand Authorized Showroom</span>
+                    </div>
+                </div>
+                
+                <!-- Editorial content (Right) -->
+                <div class="about-content reveal">
+                    <span class="about-subtitle">Why Partner With Us</span>
+                    <h2>The Trust Matrix in HVAC</h2>
+                    <p>
+                        <strong>HI-TECH AIRCONS</strong> is a trusted multi-brand AC showroom offering a wide range of high-quality air conditioners and complete cooling services. We are committed to delivering reliable products, professional workmanship, and exceptional customer satisfaction.
+                    </p>
+                    <p>
+                        Whether it is a home, office, or commercial space, our expert team provides the perfect cooling solution tailored to every requirement. From sales consultations to complex commercial installations, we prioritize energy efficiency, noise control, and aesthetic integration.
+                    </p>
+                    
+                    <div class="about-features-checklist">
+                        <div class="about-checklist-item">
+                            <i class="fa-solid fa-circle-check"></i> Certified Engineers
+                        </div>
+                        <div class="about-checklist-item">
+                            <i class="fa-solid fa-circle-check"></i> Multi-Brand Showroom
+                        </div>
+                        <div class="about-checklist-item">
+                            <i class="fa-solid fa-circle-check"></i> Transparent Diagnostics
+                        </div>
+                        <div class="about-checklist-item">
+                            <i class="fa-solid fa-circle-check"></i> Fast Response Doorstep Servicing
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Founder Profile Block -->
+            <div class="founder-section reveal">
+                <div class="founder-card">
+                    <div class="founder-img-wrapper">
+                        <img src="assets/owner.jpg" alt="Ilyas K - Founder & Managing Director of HI-TECH AIRCONS">
+                    </div>
+                    <div class="founder-details-content">
+                        <span class="founder-badge" id="configOwnerTitle">Founder & Managing Director</span>
+                        <h3 id="configOwnerName">ILYAS K</h3>
+                        <p class="founder-quote" id="configOwnerQuote">
+                            "At HI-TECH AIRCONS, our mission is to build trust through technical excellence. We combine premium engineering with absolute transparency so that every client experiences smart, stress-free comfort."
+                        </p>
+                        <div class="founder-signature-block">
+                            <span class="founder-signature-name" id="configOwnerSignName">Ilyas K</span>
+                            <span class="founder-signature-title">Founder & MD, HI-TECH AIRCONS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOP AC BRANDS SHOWCASE GRID -->
+    <section class="section-padding brands-section" id="brands">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Top AC Brands Under One Roof</h2>
+                <p>We offer genuine products from India's and the world's most trusted air conditioning brands.</p>
+            </div>
+            
+            <!-- Interactive Brands Grid -->
+            <div class="brands-grid reveal">
+                <div class="brand-card" data-brand-color="daikin" id="brandDaikin">
+                    <span class="brand-logo-text">DAIKIN</span>
+                    <span class="brand-badge-text">Japan Technology</span>
+                </div>
+                <div class="brand-card" data-brand-color="lg" id="brandLG">
+                    <span class="brand-logo-text">LG</span>
+                    <span class="brand-badge-text">Dual Inverter AI</span>
+                </div>
+                <div class="brand-card" data-brand-color="voltas" id="brandVoltas">
+                    <span class="brand-logo-text">VOLTAS</span>
+                    <span class="brand-badge-text">A TATA Product</span>
+                </div>
+                <div class="brand-card" data-brand-color="bluestar" id="brandBluestar">
+                    <span class="brand-logo-text">BLUE STAR</span>
+                    <span class="brand-badge-text">Premium Cooling</span>
+                </div>
+                <div class="brand-card" data-brand-color="hitachi" id="brandHitachi">
+                    <span class="brand-logo-text">HITACHI</span>
+                    <span class="brand-badge-text">Tropical Cooling</span>
+                </div>
+                <div class="brand-card" data-brand-color="panasonic" id="brandPanasonic">
+                    <span class="brand-logo-text">PANASONIC</span>
+                    <span class="brand-badge-text">NanoeX Clean Air</span>
+                </div>
+                <div class="brand-card" data-brand-color="carrier" id="brandCarrier">
+                    <span class="brand-logo-text">CARRIER</span>
+                    <span class="brand-badge-text">Heavy Duty HVAC</span>
+                </div>
+                <div class="brand-card" data-brand-color="samsung" id="brandSamsung">
+                    <span class="brand-logo-text">SAMSUNG</span>
+                    <span class="brand-badge-text">WindFree™ Design</span>
+                </div>
+                <div class="brand-card" data-brand-color="haier" id="brandHaier">
+                    <span class="brand-logo-text">HAIER</span>
+                    <span class="brand-badge-text">Self-Clean Tech</span>
+                </div>
+                <div class="brand-card" data-brand-color="lloyd" id="brandLloyd">
+                    <span class="brand-logo-text">LLOYD</span>
+                    <span class="brand-badge-text">Havells Brand</span>
+                </div>
+                <div class="brand-card" data-brand-color="mitsubishi" id="brandMitsubishi">
+                    <span class="brand-logo-text">MITSUBISHI</span>
+                    <span class="brand-badge-text">Extreme Durability</span>
+                </div>
+                <div class="brand-card" data-brand-color="ogeneral" id="brandOGeneral">
+                    <span class="brand-logo-text">O GENERAL</span>
+                    <span class="brand-badge-text">Super Power Cooling</span>
+                </div>
+                <div class="brand-card" data-brand-color="godrej" id="brandGodrej">
+                    <span class="brand-logo-text">GODREJ</span>
+                    <span class="brand-badge-text">Eco-Friendly R32</span>
+                </div>
+                <div class="brand-card" data-brand-color="whirlpool" id="brandWhirlpool">
+                    <span class="brand-logo-text">WHIRLPOOL</span>
+                    <span class="brand-badge-text">6th Sense Cooling</span>
+                </div>
+                <div class="brand-card" data-brand-color="ifb" id="brandIFB">
+                    <span class="brand-logo-text">IFB</span>
+                    <span class="brand-badge-text">Titanium Gold AC</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="section-padding" id="services">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Our Cooling Services</h2>
+                <p>From residential installation to commercial annual maintenance, our HVAC engineers deliver precision service.</p>
+            </div>
+            
+            <div class="services-grid reveal">
+                <!-- Card 1: AC Sales -->
+                <div class="glass-panel service-card" id="serviceSales">
+                    <div class="service-icon-box">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <h3>AC Sales</h3>
+                    <p>Explore a wide range of split, window, cassette, and tower air conditioners customized for homes, offices, and commercial properties.</p>
+                    <a href="#" class="service-card-link btn-book-trigger">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                
+                <!-- Card 2: AC Installation -->
+                <div class="glass-panel service-card" id="serviceInstallation">
+                    <div class="service-icon-box">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3>AC Installation</h3>
+                    <p>Professional placement, copper piping layout, safety testing, and outdoor bracket mounting performed to strict engineering standards.</p>
+                    <a href="#" class="service-card-link btn-book-trigger">Schedule Installation <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                
+                <!-- Card 3: AC Repair -->
+                <div class="glass-panel service-card" id="serviceRepair">
+                    <div class="service-icon-box">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                    </div>
+                    <h3>AC Repair & Troubleshooting</h3>
+                    <p>Fast diagnosis for error codes, cooling drops, compressor failures, and electrical faults across all major AC manufacturers.</p>
+                    <a href="#" class="service-card-link btn-book-trigger">Request Repair <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                
+                <!-- Card 4: AC Maintenance -->
+                <div class="glass-panel service-card" id="serviceMaintenance">
+                    <div class="service-icon-box">
+                        <i class="fa-solid fa-wind"></i>
+                    </div>
+                    <h3>AC Maintenance & Deep Cleaning</h3>
+                    <p>Power jet cleaning for coils and blower wheel, drain tray disinfection, and air filter sterilization to maximize airflow efficiency.</p>
+                    <a href="#" class="service-card-link btn-book-trigger">Book Cleaning <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                
+                <!-- Card 5: Gas Refilling -->
+                <div class="glass-panel service-card" id="serviceGas">
+                    <div class="service-icon-box">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <h3>Gas Refilling & Leak Check</h3>
+                    <p>Nitrogen pressure leak testing, micro-leak welding repair, vacuuming, and accurate R32 / R410 / R22 refrigerant charging.</p>
+                    <a href="#" class="service-card-link btn-book-trigger">Check Refrigerant <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                
+                <!-- Card 6: AMC -->
+                <div class="glass-panel service-card" id="serviceAMC">
+                    <div class="service-icon-box">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3>Annual Maintenance Contract</h3>
+                    <p>Affordable corporate and residential AMC plans offering routine seasonal checkups, priority diagnostic calls, and spare discount benefits.</p>
+                    <a href="#" class="service-card-link btn-book-trigger">Get AMC Quote <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="section-padding why-section">
+        <div class="why-bg-decor"></div>
+        <div class="container">
+            <div class="why-grid">
+                <!-- Content (Left) -->
+                <div class="why-content reveal">
+                    <h2>Engineered for Excellence, Built for Trust</h2>
+                    <p>For over a decade, HI-TECH AIRCONS has remained Trichy's premium cooling choice. We design custom HVAC ecosystems that combine clean ventilation, noiseless operations, and cost-effective energy performance.</p>
+                    <button class="btn btn-primary btn-book-trigger" id="whyBookBtn">Experience Premium Cooling</button>
+                </div>
+                
+                <!-- Pillars (Right) -->
+                <div class="why-pillars reveal">
+                    <div class="pillar-item">
+                        <div class="pillar-icon-box">
+                            <i class="fa-solid fa-store"></i>
+                        </div>
+                        <div class="pillar-text">
+                            <h4>Multi-brand Showroom</h4>
+                            <p>Compare models from 15 global brands directly in-store.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pillar-item">
+                        <div class="pillar-icon-box">
+                            <i class="fa-solid fa-user-tie"></i>
+                        </div>
+                        <div class="pillar-text">
+                            <h4>Expert Technicians</h4>
+                            <p>Factory-certified professionals handling delicate electronics.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pillar-item">
+                        <div class="pillar-icon-box">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <div class="pillar-text">
+                            <h4>100% Genuine Spares</h4>
+                            <p>We source authentic parts to maintain manufacturer warranty integrity.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="pillar-item">
+                        <div class="pillar-icon-box">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <div class="pillar-text">
+                            <h4>Doorstep Servicing</h4>
+                            <p>On-time responsive dispatch service right at your doorstep.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE MEDIA GALLERY -->
+    <section class="section-padding" id="gallery">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Our HVAC Portfolios</h2>
+                <p>Take a look at our premium showroom, high-end residential installations, and heavy-duty commercial projects.</p>
+            </div>
+            
+            <!-- Gallery Filters -->
+            <div class="gallery-filter-bar reveal">
+                <button class="gallery-filter-btn active" data-filter="all">All Projects</button>
+                <button class="gallery-filter-btn" data-filter="showroom">Showroom Floor</button>
+                <button class="gallery-filter-btn" data-filter="split">Residential Split</button>
+                <button class="gallery-filter-btn" data-filter="commercial">Commercial VRF</button>
+                <button class="gallery-filter-btn" data-filter="repair">Precision Repairs</button>
+            </div>
+            
+            <!-- Gallery Grid (Using High-Quality HVAC Visuals) -->
+            <div class="gallery-grid reveal">
+                <!-- Item 1 -->
+                <div class="gallery-item" data-category="showroom" id="galleryItem1">
+                    <img src="assets/gallery-showroom.png" alt="HI-TECH AIRCONS Showroom interior display">
+                    <div class="gallery-overlay">
+                        <h4>Showroom Display Floor</h4>
+                        <p>Showroom Floor</p>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="gallery-item" data-category="split" id="galleryItem2">
+                    <img src="assets/gallery-split.png" alt="Luxury Living Room Wall Split AC Installation">
+                    <div class="gallery-overlay">
+                        <h4>Living Room Split AC</h4>
+                        <p>Split AC Installations</p>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="gallery-item" data-category="commercial" id="galleryItem3">
+                    <img src="assets/gallery-commercial-vrv.png" alt="Rooftop Commercial VRV Compressor system">
+                    <div class="gallery-overlay">
+                        <h4>Commercial VRV Rooftop System</h4>
+                        <p>Commercial HVAC Projects</p>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="gallery-item" data-category="repair" id="galleryItem4">
+                    <img src="assets/gallery-repair-gas.png" alt="Technician measuring gas leakage">
+                    <div class="gallery-overlay">
+                        <h4>Compressor Gas Pressure Check</h4>
+                        <p>Precision Repair Work</p>
+                    </div>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="gallery-item" data-category="commercial" id="galleryItem5">
+                    <img src="assets/gallery-office-cassette.png" alt="Office Cassette Air Conditioning installation">
+                    <div class="gallery-overlay">
+                        <h4>Ducted Office Cooling</h4>
+                        <p>Commercial HVAC Projects</p>
+                    </div>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="gallery-item" data-category="repair" id="galleryItem6">
+                    <img src="assets/gallery-repair-pcb.png" alt="Technician repairing control circuit board">
+                    <div class="gallery-overlay">
+                        <h4>PCB Control Board Repair</h4>
+                        <p>Precision Repair Work</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CUSTOMER TESTIMONIALS -->
+    <section class="section-padding testimonials-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Loved by Trichy</h2>
+                <p>Hear from premium homeowners and commercial facility managers about their cooling experiences with us.</p>
+            </div>
+            
+            <div class="testimonial-slider-container reveal" id="testimonialSlider">
+                <!-- Navigation Arrows -->
+                <button class="slider-arrow-btn prev-arrow" id="sliderPrevBtn" aria-label="Previous Slide">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="slider-arrow-btn next-arrow" id="sliderNextBtn" aria-label="Next Slide">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <div class="testimonial-track" id="testimonialTrack">
+                    <!-- Slide 1 -->
+                    <div class="testimonial-slide">
+                        <div class="glass-panel testimonial-card">
+                            <i class="fa-solid fa-quote-left testimonial-quote-icon"></i>
+                            <p class="testimonial-text">"I bought two Daikin split ACs for my home. The showroom staff helped me choose the right tonnage, and the installation team was incredibly neat. Excellent service and competitive pricing."</p>
+                            <div class="star-rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="testimonial-client-meta">
+                                <h4>Rajesh Kumar</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="testimonial-slide">
+                        <div class="glass-panel testimonial-card">
+                            <i class="fa-solid fa-quote-left testimonial-quote-icon"></i>
+                            <p class="testimonial-text">"HI-TECH AIRCONS manages the VRF air conditioning for our office floor. Their technicians are extremely professional and did a fantastic job with deep cleaning. Highly recommended for commercial AMC."</p>
+                            <div class="star-rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="testimonial-client-meta">
+                                <h4>Meera Subramanian</h4>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3 -->
+                    <div class="testimonial-slide">
+                        <div class="glass-panel testimonial-card">
+                            <i class="fa-solid fa-quote-left testimonial-quote-icon"></i>
+                            <p class="testimonial-text">"We faced a gas leakage and cooling issue on our AC during peak summer. Their technician responded within 2 hours, found the leak, repaired it, and refilled the gas. Fantastic service speeds."</p>
+                            <div class="star-rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="testimonial-client-meta">
+                                <h4>Dr. Karthik S.</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="testimonial-slide">
+                        <div class="glass-panel testimonial-card">
+                            <i class="fa-solid fa-quote-left testimonial-quote-icon"></i>
+                            <p class="testimonial-text">"I got my LG dual inverter AC serviced by them. The mechanics are extremely knowledgeable, diagnosed a minor compressor gas block quickly, and charged a very nominal fee. Great expertise!"</p>
+                            <div class="star-rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="testimonial-client-meta">
+                                <h4>Venkatesh S.</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="testimonial-slide">
+                        <div class="glass-panel testimonial-card">
+                            <i class="fa-solid fa-quote-left testimonial-quote-icon"></i>
+                            <p class="testimonial-text">"Very prompt response. Called them for emergency AC installation in our showroom. The team arrived on time, completed the copper pipe laying neatly, and tested the airflow. Highly recommended!"</p>
+                            <div class="star-rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="testimonial-client-meta">
+                                <h4>S. Mohamed Rafeeq</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6 -->
+                    <div class="testimonial-slide">
+                        <div class="glass-panel testimonial-card">
+                            <i class="fa-solid fa-quote-left testimonial-quote-icon"></i>
+                            <p class="testimonial-text">"Their technician team did a great job deep cleaning our split AC units. They used high-pressure water jets and left no mess on the walls. The air throw is much cleaner and cooling is super fast."</p>
+                            <div class="star-rating">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="testimonial-client-meta">
+                                <h4>Anandhi R.</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dots navigation -->
+                <div class="slider-navigation-dots" id="sliderDots"></div>
+            </div>
+
+            <!-- Google Reviews Link CTA Button -->
+            <div class="reviews-cta-container text-center reveal" style="margin-top: 3rem;">
+                <a href="https://www.google.com/search?sca_esv=2ffa9d8057b66fa2&sxsrf=APpeQnt4bQ4mCHU_nAteLsYMXWf7G6Tvdg:1785752175357&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_4Ohbe8Ve6OyAUGySGOI3ykrRrX0N0AUxM6q4oeauLi7-sqykegi12UZZGeGMLeQKx-oC9PcXnR4nJCHu_F1BFF99mSv&q=Hi-Tech+Aircons+Reviews&sa=X&ved=2ahUKEwjppcagnYSWAxWXmeEIHcPvJUoQ0bkNegQINRAF&biw=1536&bih=730&dpr=1.25" target="_blank" class="btn btn-primary" id="btnGoogleReviews" style="gap: 0.75rem; border-radius: 25px; padding: 0.85rem 2.5rem; font-weight: 700; box-shadow: var(--glass-shadow-hover);">
+                    <i class="fa-brands fa-google"></i> Write a Google Review Here
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT, LOCATION & STRUCTURAL MAPPING -->
+    <section class="section-padding" id="contact">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Get in Touch with Us</h2>
+                <p>Visit our showroom or drop us a line. Our cooling consultants are ready to assist you.</p>
+            </div>
+            
+            <div class="contact-grid">
+                <!-- Info Column (Left) -->
+                <div class="glass-panel contact-info-panel reveal" id="contactInfoCard">
+                    <div class="contact-identity">
+                        <h3>HI-TECH AIRCONS</h3>
+                        <div class="contact-badge-box">
+                            <span class="badge badge-gst" id="configGstin">GSTIN: 33ABJPI7098G1ZF</span>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-details-list">
+                        <!-- Address -->
+                        <div class="contact-detail-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="contact-detail-text">
+                                <h4>Our Showroom</h4>
+                                <p id="configContactAddress">No: 68A, VVLP Complex, Near Retta Pillaiyaar Temple,<br>Palakarai Main Road, Palakarai,<br>Trichy – 620008, Tamil Nadu, India.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Call -->
+                        <div class="contact-detail-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <div class="contact-detail-text">
+                                <h4>Call Our Team</h4>
+                                <p><a href="tel:8072157403" id="configContactPhone1">+91 80721 57403</a></p>
+                                <p><a href="tel:9842383756" id="configContactPhone2">+91 98423 83756</a></p>
+                            </div>
+                        </div>
+                        
+                        <!-- Email -->
+                        <div class="contact-detail-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div class="contact-detail-text">
+                                <h4>Email Support</h4>
+                                <p><a href="mailto:hitechaircons01@gmail.com" id="configContactEmail">hitechaircons01@gmail.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Map Column (Right) -->
+                <div class="map-wrapper-card reveal" id="mapCard">
+                    <div class="map-iframe-container">
+                        <!-- Embedded Google Map targeting Palakarai main road location in Trichy -->
+                        <iframe 
+                            src="https://maps.google.com/maps?q=Palakarai%20Main%20Road,%20Palakarai,%20Trichy&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="map-actions-bar">
+                        <a href="https://maps.google.com/?q=HI-TECH+AIRCONS+Palakarai+Main+Road+Palakarai+Trichy" target="_blank" class="btn btn-primary" id="btnGetDirections">
+                            <i class="fa-solid fa-diamond-turn-right"></i> Get Directions
+                        </a>
+                        <a href="https://maps.google.com/?q=HI-TECH+AIRCONS+Palakarai+Main+Road+Palakarai+Trichy" target="_blank" class="btn btn-secondary" id="btnOpenInMap">
+                            <i class="fa-solid fa-map-location-dot"></i> Open in Google Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOATING QUICK ACTIONS (Persistent Bottom Right) -->
+    <div class="floating-actions-bar" id="floatingActionBar">
+        <!-- Floating WhatsApp -->
+        <a href="https://wa.me/918072157403?text=Hi%20HI-TECH%20AIRCONS%2C%20I%20would%20like%20to%20book%20a%20service%20for%20my%20AC." target="_blank" class="floating-action-btn floating-btn-whatsapp" id="floatWhatsappBtn" title="WhatsApp Chat">
+            <i class="fa-brands fa-whatsapp"></i>
+        </a>
+        
+        <!-- Floating Call -->
+        <a href="tel:8072157403" class="floating-action-btn floating-btn-call" id="floatCallBtn" title="Call Now">
+            <i class="fa-solid fa-phone"></i>
+        </a>
+        
+        <!-- Floating Book Service Modal Trigger -->
+        <button class="floating-action-btn floating-btn-book btn-book-trigger" id="floatBookBtn" title="Book Service Form">
+            <i class="fa-regular fa-calendar-check"></i>
+        </button>
+    </div>
+
+    <!-- QUICK BOOKING SERVICE MODAL -->
+    <div class="booking-modal" id="bookingModal">
+        <div class="modal-content-card">
+            <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+            <div class="modal-header">
+                <h3>Book AC Service</h3>
+                <p>Fill out this form and our support manager will call you back within 30 minutes.</p>
+            </div>
+            
+            <form class="booking-form" id="bookingForm">
+                <div class="form-group">
+                    <label for="bookingName">Your Name *</label>
+                    <input type="text" id="bookingName" class="form-input" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookingPhone">Phone Number *</label>
+                    <input type="tel" id="bookingPhone" class="form-input" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookingService">Required Service *</label>
+                    <select id="bookingService" class="form-input" style="height: 48px;" required>
+                        <option value="">-- Select Service Type --</option>
+                        <option value="sales">New AC Sales Inquiry</option>
+                        <option value="installation">AC Installation / Re-installation</option>
+                        <option value="repair">AC Troubleshooting & Repair</option>
+                        <option value="maintenance">Deep Jet Servicing / Maintenance</option>
+                        <option value="gas">Gas Charging / Cooling Refill</option>
+                        <option value="amc">Annual Maintenance Contract (AMC)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookingNotes">Additional Details (Optional)</label>
+                    <textarea id="bookingNotes" class="form-input" rows="3" placeholder="Mention brand or cooling issue description..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="btnSubmitBooking" style="width: 100%; margin-top: 1rem;">
+                    Submit Service Request
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SUCCESS CONFIRMATION DIALOG MODAL -->
+    <div class="booking-modal" id="successModal">
+        <div class="modal-content-card" style="text-align: center; max-width: 440px;">
+            <button class="modal-close-btn" id="successCloseBtn">&times;</button>
+            <div class="success-icon-box">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="modal-header" style="margin-bottom: 1.5rem;">
+                <h3 style="font-size: 1.6rem; color: var(--primary);">Request Submitted!</h3>
+                <p id="successModalMsg" style="line-height: 1.6; font-size: 0.95rem; color: var(--text-muted); margin-top: 0.5rem;"></p>
+            </div>
+            <button class="btn btn-primary" id="btnSuccessOk" style="width: 100%; height: 48px; border-radius: 24px;">Great!</button>
+        </div>
+    </div>
+
+    <!-- BRAND DETAILS MODAL SHOWCASE -->
+    <div class="booking-modal" id="brandModal">
+        <div class="modal-content-card" style="max-width: 800px; padding: 2.5rem;">
+            <button class="modal-close-btn" id="brandModalCloseBtn">&times;</button>
+            <div class="modal-header" style="text-align: left; margin-bottom: 2rem; border-bottom: 1px solid var(--neutral-grey); padding-bottom: 1rem;">
+                <h3 id="brandModalTitle" style="font-size: 1.8rem; color: var(--primary);">Brand Air Conditioners</h3>
+                <p id="brandModalSub" style="color: var(--accent); font-weight: 600; margin-top: 0.25rem;">Authorized Showroom Range</p>
+            </div>
+            
+            <div class="brand-products-grid" id="brandProductsGrid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-height: 480px; overflow-y: auto; padding-right: 0.5rem;">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER LAYOUT -->
+    <footer class="footer" id="footerSection">
+        <div class="container">
+            <div class="footer-top-grid">
+                <!-- Col 1: Brand -->
+                <div class="footer-col">
+                    <a href="#" class="footer-logo-block">
+                        <img src="assets/logo.jpg" alt="HI-TECH AIRCONS Logo">
+                        <div class="logo-text-group">
+                            <span class="footer-brand-name">HI-TECH <span>AIRCONS</span></span>
+                            <span class="logo-subtext" id="configTaglineHeader">Smart Cooling for smart people</span>
+                        </div>
+                    </a>
+                    <p>Trichy's premium multi-brand air conditioning showroom and servicing specialists. Genuine cooling products, experienced staff, and lifetime trust.</p>
+                    <span style="font-size: 0.8rem; font-weight: 700; color: white;" id="configGstinFooter">GSTIN: 33ABJPI7098G1ZF</span>
+                </div>
+                
+                <!-- Col 2: Navigation Links -->
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#brands">Top Brands</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#gallery">Project Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Col 3: Services -->
+                <div class="footer-col">
+                    <h4>Core Services</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="#services">New AC Sales</a></li>
+                        <li><a href="#services">AC Installation</a></li>
+                        <li><a href="#services">AC Repair Service</a></li>
+                        <li><a href="#services">Deep Jet Maintenance</a></li>
+                        <li><a href="#services">Refrigerant Refilling</a></li>
+                        <li><a href="#services">Annual Contracts (AMC)</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Col 4: Contacts & Socials -->
+                <div class="footer-col">
+                    <h4>Reach Us</h4>
+                    <div class="footer-contact-details">
+                        <div class="footer-contact-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span id="configFooterAddress">No: 68A, VVLP Complex, Near Retta Pillaiyaar Temple, Palakarai Main Road, Trichy – 620008</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <span id="configFooterPhones">+91 80721 57403<br>+91 98423 83756</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span id="configFooterEmail">hitechaircons01@gmail.com</span>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-social-icons">
+                        <a href="#" class="social-icon-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon-btn"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon-btn"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Copyright Strip -->
+            <div class="footer-bottom-strip">
+                <p id="configCopyright">&copy; 2026 HI-TECH AIRCONS. All Rights Reserved. Designed with premium cooling engineering.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom JS Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

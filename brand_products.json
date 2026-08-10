@@ -1,0 +1,272 @@
+{
+    "daikin": {
+        "title": "Daikin Air Conditioners",
+        "sub": "Japan Tech - Premium Inverter Cooling & Long Lifespan",
+        "products": [
+            {
+                "name": "Daikin 1.5 Ton 5-Star Inverter Split AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/r/d/y/-original-imahhnfj6ngyyq9c.jpeg",
+                "specs": "100% Copper, PM 2.5 Filter, Coanda Airflow, Triple Display, Dew Clean Tech",
+                "price": "\u20b944,500"
+            },
+            {
+                "name": "Daikin 2.0 Ton Cassette AC (4-Way Flow)",
+                "image": "https://tiimg.tistatic.com/fp/1/007/627/white-wall-mounted-daikin-electrical-split-air-conditioner-with-1-0-ton-capacity-and-3-star-rated-operating-voltage-220v-434.jpg",
+                "specs": "Uniform ceiling cooling, low noise, scroll compressor, energy efficient",
+                "price": "\u20b974,000"
+            }
+        ]
+    },
+    "lg": {
+        "title": "LG AI Dual Inverter ACs",
+        "sub": "Dual Rotary Compressor & Smart AI Thin-Q Wifi Control",
+        "products": [
+            {
+                "name": "LG 1.5 Ton 5-Star AI Inverter Split AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/m/3/j/-original-imahzqsncmvvf6rd.jpeg",
+                "specs": "6-in-1 convertible cooling, Anti-virus filter, Gold Fin anti-corrosion, Wifi ThinQ",
+                "price": "\u20b942,900"
+            },
+            {
+                "name": "LG 1.0 Ton 3-Star Inverter Split AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/z/g/t/-original-imahh8b86cyhevqj.jpeg",
+                "specs": "Dual cooling, HD filter, stabilizer-free operations, fast cooling",
+                "price": "\u20b932,500"
+            }
+        ]
+    },
+    "voltas": {
+        "title": "Voltas Air Conditioners",
+        "sub": "A TATA Product - India's Highest Selling High-Ambient Cooling",
+        "products": [
+            {
+                "name": "Voltas 1.5 Ton 5-Star Adjustable Inverter AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/c/7/7/-original-imahp56r6czqs6rr.jpeg",
+                "specs": "Cools up to 52\u00b0C, Multi-stage air filtration, Turbo cooling mode, low maintenance",
+                "price": "\u20b938,900"
+            },
+            {
+                "name": "Voltas 1.5 Ton 3-Star Window AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/9/u/w/-original-imahmyxhjhgenvdz.jpeg",
+                "specs": "Easy installation window layout, copper condenser, eco-friendly refrigerant",
+                "price": "\u20b928,500"
+            }
+        ]
+    },
+    "bluestar": {
+        "title": "Blue Star Premium Cooling",
+        "sub": "Precision Temperature Control & Anti-Corrosive Blue Fins",
+        "products": [
+            {
+                "name": "Blue Star 1.5 Ton 5-Star Inverter Split AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/i/t/n/-original-imahp2yg3bhxgsdz.jpeg",
+                "specs": "Brushless DC motor, fuzzy logic control, self-diagnosis, climate control",
+                "price": "\u20b943,500"
+            },
+            {
+                "name": "Blue Star 1.5 Ton Heavy Duty Cassette AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/g/o/m/ic318vnu-1-5-23-split-turbo-blue-star-original-imagwy5kae28mvjy.jpeg",
+                "specs": "Quiet operation blower, high airflow range, perfect for corporate meeting halls",
+                "price": "\u20b969,900"
+            }
+        ]
+    },
+    "hitachi": {
+        "title": "Hitachi Tropical ACs",
+        "sub": "Premium Cooling Even at 55\u00b0C & Wave Blade blower tech",
+        "products": [
+            {
+                "name": "Hitachi 1.5 Ton 5-Star Inverter Split AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/t/i/q/-original-imahjryugdbvkfa5.jpeg",
+                "specs": "Expandable cooling technology, frost self-clean coil, micro-dust filter",
+                "price": "\u20b945,900"
+            },
+            {
+                "name": "Hitachi 2.0 Ton 3-Star Tropical AC",
+                "image": "https://5.imimg.com/data5/SELLER/Default/2022/4/OC/SF/KA/148344879/hitachi-air-conditioner-1000x1000.png",
+                "specs": "Super wide airflow, copper tubes, heavy duty rotary compressor",
+                "price": "\u20b952,000"
+            }
+        ]
+    },
+    "panasonic": {
+        "title": "Panasonic Smart ACs",
+        "sub": "Nanoe-G Air Sterilization & MirAie Smart Wifi Integration",
+        "products": [
+            {
+                "name": "Panasonic 1.5 Ton 5-Star Wifi Inverter Split AC",
+                "image": "https://darlingretail.com/cdn/shop/files/1_f9aa79cf-9051-46f6-b1a3-10ffeb397f1a.jpg",
+                "specs": "PM 0.1 fine dust purification, hands-free voice control Alexa/Google, Shield Blu protection",
+                "price": "\u20b944,000"
+            },
+            {
+                "name": "Panasonic 1.0 Ton 5-Star Inverter AC",
+                "image": "https://m.media-amazon.com/images/I/51oHVObWQqL.jpg",
+                "specs": "Double flap airflow, smart diagnosis, customized sleep profiles",
+                "price": "\u20b935,500"
+            }
+        ]
+    },
+    "carrier": {
+        "title": "Carrier Air Conditioners",
+        "sub": "The Inventor of Modern AC - Extreme Durability & Performance",
+        "products": [
+            {
+                "name": "Carrier 1.5 Ton 5-Star Flexicool Inverter AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/w/m/z/-original-imahn3zd9yshexrm.jpeg",
+                "specs": "6-in-1 adjustable cooling, dual filtration PM 2.5, Insta Cool quick boost",
+                "price": "\u20b941,900"
+            },
+            {
+                "name": "Carrier 2.0 Ton 3-Star Heavy Duty AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/h/c/o/-original-imahm4hnzqaygjzh.jpeg",
+                "specs": "High air throw, robust copper condenser, suited for large showrooms",
+                "price": "\u20b949,900"
+            }
+        ]
+    },
+    "samsung": {
+        "title": "Samsung WindFree\u2122 AC Range",
+        "sub": "No Cold Drafts - Cools Comfortably via 23,000 Micro-holes",
+        "products": [
+            {
+                "name": "Samsung 1.5 Ton 5-Star WindFree Inverter AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/s/d/8/-original-imahmd3ymtx3vzua.jpeg",
+                "specs": "AI Auto Cooling, Easy filter plus, copper antibacterial filter, 77% energy save",
+                "price": "\u20b946,500"
+            },
+            {
+                "name": "Samsung 1.0 Ton 3-Star Inverter Split AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/n/b/p/-original-imahmd3zepjewghk.jpeg",
+                "specs": "Fast cooling, eco mode, triple protector plus electrical safety",
+                "price": "\u20b931,000"
+            }
+        ]
+    },
+    "haier": {
+        "title": "Haier Triple Inverter ACs",
+        "sub": "Self-Clean Cold Expansion Technology & 60% Energy Saving",
+        "products": [
+            {
+                "name": "Haier 1.5 Ton 5-Star Triple Inverter AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/k/n/9/no-hsu18k-pysc4bn-inv-1-5-2025-split-inverter-haier-original-imahjszpqusnajhr.jpeg",
+                "specs": "99.9% sterilizing self-clean, hyper PCB stability, 20m long air throw",
+                "price": "\u20b939,500"
+            },
+            {
+                "name": "Haier 1.5 Ton 3-Star Inverter Split AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/0/u/o/-original-imahhxku3casqwzv.jpeg",
+                "specs": "convertible 7-in-1, anti-corrosion blue fin, quick cooling button",
+                "price": "\u20b933,900"
+            }
+        ]
+    },
+    "lloyd": {
+        "title": "Lloyd Air Conditioners",
+        "sub": "A Havells Brand - Large Display Panel & Premium Aesthetic",
+        "products": [
+            {
+                "name": "Lloyd 1.5 Ton 5-Star Inverter Split AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/f/z/p/-original-imahfthsky5twzdm.jpeg",
+                "specs": "Golden Fin evaporator, clean air filter, smart 4-way swing, low gas detection",
+                "price": "\u20b940,000"
+            },
+            {
+                "name": "Lloyd 1.0 Ton 3-Star Inverter Split AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/l37mtu80/air-conditioner-new/x/m/c/-original-imagedm2crgkkmt3.jpeg",
+                "specs": "Anti-viral dust filter, copper condenser tubes, stabilizer-free operation",
+                "price": "\u20b929,900"
+            }
+        ]
+    },
+    "mitsubishi": {
+        "title": "Mitsubishi Heavy Industries ACs",
+        "sub": "Japanese Industrial Durability & Ultra-High CFM Air Flow",
+        "products": [
+            {
+                "name": "Mitsubishi Heavy 1.5 Ton 5-Star Inverter AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/a/v/p/-original-imahmqdn9kaxtvff.jpeg",
+                "specs": "Silicone coated PCB, high performance cross-flow fan, long distance air throw",
+                "price": "\u20b953,000"
+            },
+            {
+                "name": "Mitsubishi Heavy 2.2 Ton Hyper-Inverter AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/h/u/x/-original-imahmqdnjwnjgjym.jpeg",
+                "specs": "Perfect for extreme spaces, high ambient performance, heavy duty compressor",
+                "price": "\u20b976,500"
+            }
+        ]
+    },
+    "ogeneral": {
+        "title": "O General Premium HVAC",
+        "sub": "Elite Quality - Extreme Cooling Power & Heavy-Duty Components",
+        "products": [
+            {
+                "name": "O General 1.5 Ton 5-Star Hyper Tropical AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/e/x/x/-original-imahavryxgzh69wh.jpeg",
+                "specs": "Dual suction fan design, hyper tropical rotary compressor, unmatched durability",
+                "price": "\u20b958,500"
+            },
+            {
+                "name": "O General 2.0 Ton 3-Star Tropical Split AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/u/x/o/-original-imahzqtegkgy8vzh.jpeg",
+                "specs": "High air circulation volume, heavy gauge copper fin, elite long-term value",
+                "price": "\u20b965,000"
+            }
+        ]
+    },
+    "godrej": {
+        "title": "Godrej Eon Green Air Conditioners",
+        "sub": "Eco-Friendly R32 Refrigerant & Anti-Leak Condensers",
+        "products": [
+            {
+                "name": "Godrej 1.5 Ton 5-Star Eco Inverter AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/4/z/3/-original-imahme2uuj5jghhz.jpeg",
+                "specs": "Convertible 5-in-1 cooling, anti-dust nano filter, green protection warranty",
+                "price": "\u20b937,500"
+            },
+            {
+                "name": "Godrej 1.0 Ton 3-Star Inverter AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/w/1/6/-original-imahmvtwyrcw5mcz.jpeg",
+                "specs": "stabilizer-free operation, anti-corrosive blue fins, eco saving mode",
+                "price": "\u20b929,000"
+            }
+        ]
+    },
+    "whirlpool": {
+        "title": "Whirlpool 6th Sense Inverter ACs",
+        "sub": "IntelliSense Inverter Compressor & Fast Cooling Controls",
+        "products": [
+            {
+                "name": "Whirlpool 1.5 Ton 5-Star 6th Sense Inverter AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/g/c/v/-original-imahm9q2w3v7z9zh.jpeg",
+                "specs": "Advanced cooling algorithm, 4-in-1 convertible, micro-dust mesh, low energy design",
+                "price": "\u20b938,000"
+            },
+            {
+                "name": "Whirlpool 1.5 Ton 3-Star Split AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/4/n/z/-original-imahm3zjhv8eyhfa.jpeg",
+                "specs": "Turbo cool mode, copper condenser tubes, smart diagnostics alert",
+                "price": "\u20b932,500"
+            }
+        ]
+    },
+    "ifb": {
+        "title": "IFB FastCool Air Conditioners",
+        "sub": "Titanium Gold Coating Protection & High Moisture Removal",
+        "products": [
+            {
+                "name": "IFB 1.5 Ton 5-Star Titanium Inverter AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/r/w/k/-original-imagy3z6zhnhpzzv.jpeg",
+                "specs": "Heavy duty 7-stage air filters, dual gold fin protection, quick cooling flow",
+                "price": "\u20b942,500"
+            },
+            {
+                "name": "IFB 1.0 Ton 3-Star Inverter AC",
+                "image": "https://rukminim2.flixcart.com/image/612/612/xif0q/air-conditioner-new/t/5/y/-original-imahmd3gr4hxuze5.jpeg",
+                "specs": "Stabilizer free operations, high energy saver, gold fin evaporator",
+                "price": "\u20b931,900"
+            }
+        ]
+    }
+}
