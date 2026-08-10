@@ -1044,7 +1044,8 @@
                 });
                 
                 if (!response.ok) {
-                    throw new Error("Failed to load database. Unauthorized.");
+                    const errData = await response.json().catch(() => ({}));
+                    throw new Error(errData.error || "Failed to load database. Unauthorized.");
                 }
                 
                 const data = await response.json();
